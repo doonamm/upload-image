@@ -35,6 +35,7 @@ app.get('/error', (req, res)=>{
     res.send('Something went wrong!');
 });
 
+
 DB.on('error', (err)=>console.log(err));
 DB.once('open', ()=>{
     const ImgSchema = new mongoose.Schema({
@@ -105,9 +106,9 @@ DB.once('open', ()=>{
             res.redirect('/');
         });
     });
-    app.listen(port, onStart);
 });
 
+app.listen(port, onStart);
 
 function onStart(){
     const responseTime = (Date.now() - startTime)/1000;
