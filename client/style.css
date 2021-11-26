@@ -112,6 +112,7 @@ label:hover{
 }
 .img-list li .img-name{
     max-width: 300px;
+    width: 300px;
     color: darkorange;
     overflow: hidden;
     text-overflow: ellipsis;
