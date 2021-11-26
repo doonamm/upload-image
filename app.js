@@ -23,6 +23,18 @@ const startTime = Date.now();
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 const DB = mongoose.connection;
 
+app.use('/', express.static(path.join(__dirname, '/client')));
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
+app.get('/', (req, res)=>{
+    res.sendFile(__dirname + '/client/index.html');
+});
+
+app.get('/error', (req, res)=>{
+    res.send('Something went wrong!');
+});
+
 DB.on('error', (err)=>console.log(err));
 DB.once('open', ()=>{
     const ImgSchema = new mongoose.Schema({
@@ -34,18 +46,6 @@ DB.once('open', ()=>{
         }
     });
     const Img = mongoose.model('images', ImgSchema);
-
-    app.use('/', express.static(path.join(__dirname, '/client')));
-    app.use(express.urlencoded({extended: true}));
-    app.use(express.json());
-
-    app.get('/', (req, res)=>{
-        res.sendFile(__dirname + '/client/index.html');
-    });
-
-    app.get('/error', (req, res)=>{
-        res.send('Something went wrong!');
-    });
 
     app.get('/photo/:id', (req, res)=>{
         const id = req.params.id;
@@ -105,9 +105,9 @@ DB.once('open', ()=>{
             res.redirect('/');
         });
     });
-
     app.listen(port, onStart);
 });
+
 
 function onStart(){
     const responseTime = (Date.now() - startTime)/1000;
