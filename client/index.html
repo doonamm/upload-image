@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./style.css">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <ul class="img-list" id="img-list">
+
+        </ul>
+        <div class="right">
+            <h1>Upload your image here!</h1>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input id="input-file" type="file" name="image" accept="image/*" required/>
+                <label for="input-file">
+                    Select your image
+                    <span class="icon">✓</span>
+                </label>
+                <input id="submit-file" type="submit" value="upload now"/>
+            </form>
+        </div>
+    </body>
+</html>
