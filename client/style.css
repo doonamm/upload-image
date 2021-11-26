@@ -57,7 +57,7 @@ label{
     display: block;
     margin: 20px auto;
     width: fit-content;
-    padding: 3px 15px 4px;
+    padding: 4px 15px;
     border-radius: 20px;
     border: 1px solid lightseagreen;
     cursor: pointer;
